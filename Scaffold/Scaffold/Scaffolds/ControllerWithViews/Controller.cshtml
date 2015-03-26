@@ -1,0 +1,30 @@
+﻿@model Scaffold.ScaffoldModel
+
+using System;
+using System.Web.Mvc;
+using System.Web.Security;
+using @(@Model.ProjectNamespace).Models;
+
+namespace @(@Model.ProjectNamespace).Controllers
+{
+
+    public  class @(Model.Model.Name)Controller : Controller
+    {
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Details()
+        {
+            return View();
+        }
+    
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+}

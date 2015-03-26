@@ -1,0 +1,26 @@
+﻿{
+    "name": "Controller with Views",
+    "templates": [
+        {
+            "name": "controller.cshtml",
+            "destination": "controllers\\@(@Model)Controller.cs"
+        },
+               {
+            "name": "ControllerTests.cshtml",
+            "destination": "..\\UnitTests\\controllers\\@(@Model)ControllerTests.cs"
+        },
+     /*    {
+            "name": "index.razor",
+            "destination": "views\\@(@name)\\index.cshtml"
+        },
+        {
+            "name": "create.razor",
+            "destination": "views\\@(@name)\\create.cshtml"
+        },
+        {
+            "name": "detail.razor",
+            "destination": "views\\@(@name)\\detail.cshtml"
+        }
+        */
+    ]
+}

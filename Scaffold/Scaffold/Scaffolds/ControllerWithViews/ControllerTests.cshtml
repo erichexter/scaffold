@@ -1,0 +1,18 @@
+﻿@model Scaffold.ScaffoldModel
+using System;
+using System.Web.Mvc;
+using @(@Model.ProjectNamespace).Models;
+
+namespace @(@Model.ProjectNamespace).Controllers
+{
+
+    [TestFixture]
+    public  class @(Model.Model.Name)ControllerTests 
+    {
+        [Test]
+        public void Index()
+        {
+            var controller = new @(Model.Model.Name)Controller();
+            var result = controller.Index();           
+        }
+}
