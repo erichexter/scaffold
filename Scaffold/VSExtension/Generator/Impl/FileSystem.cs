@@ -18,10 +18,22 @@ namespace Flywheel.Generator
             return File.Exists(filePath);
         }
 
+
+        public string WriteTempFile(string content)
+        {
+            var filename = GetTempFilename();
+            WriteFile(filename,content);
+            return filename;
+        }
         public void WriteFile(string filePath, string content)
         {
             CreateDirectory(filePath);
             File.WriteAllText(filePath, content);
+        }
+
+        public string GetTempFilename()
+        {
+            return Path.GetTempFileName();
         }
 
         public IEnumerable<string> GetFilesInDirectory(string directory, string filePattern)
