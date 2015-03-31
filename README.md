@@ -1,6 +1,7 @@
 # scaffold
 This is a simple model based scaffolding tool, command line and visual studio extension. Scaffold templates are written in Razor, a clean templating language that utilizes C# as the programing language.
 
+
 Select a model you want to use as a source to scaffold around.
 <img src="https://raw.githubusercontent.com/erichexter/scaffold/master/screenshots/1.png">
 
