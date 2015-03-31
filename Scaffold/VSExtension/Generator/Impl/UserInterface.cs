@@ -25,7 +25,7 @@ namespace Flywheel.Generator
 			_statusController.Run(results);
 		}
 
-		public IEnumerable<string> DisplayTemplateSelection(string projectDirectory, string modelName)
+		public ScaffoldSelection DisplayTemplateSelection(string projectDirectory, string modelName)
 		{
 			_selectionController.Run(modelName, projectDirectory);
 
@@ -33,7 +33,12 @@ namespace Flywheel.Generator
 
 			string[] templates = GetTemplatesFromTheSelectionController(projectDirectory, set);
 
-			return templates;
+		    var result = new ScaffoldSelection()
+		    {
+                Name=set,
+                Templates=templates
+		    };
+			return result;
 		}
 
 		#endregion
@@ -47,5 +52,12 @@ namespace Flywheel.Generator
 		{
 			return projectDirectory + _projectConfiguration.TemplateSetDirectory + "\\" + set + "\\" + s + ".tt";
 		}
+
 	}
+
+    public class ScaffoldSelection
+    {
+        public string[] Templates { get; set; }
+        public string Name { get; set; }
+    }
 }

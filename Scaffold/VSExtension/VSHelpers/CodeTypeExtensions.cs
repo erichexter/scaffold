@@ -2,6 +2,8 @@
 using System.IO;
 using EnvDTE;
 using System.Linq;
+using Scaffold;
+
 namespace Flywheel.VSHelpers
 {
 	public static class CodeTypeExtensions
@@ -20,13 +22,15 @@ namespace Flywheel.VSHelpers
 			return path;
 		}
 
-		public static ModelType ModelType(this CodeType codeType)
+		public static ScaffoldModel ModelType(this CodeType codeType)
 		{
-			var modeltype = new ModelType();
-			modeltype.Name = codeType.Name;
-			modeltype.Namespace = codeType.Namespace.FullName;
-		    modeltype.Bases.AddRange( FindBases(codeType.Bases.Cast<CodeType>()));
-			AddChildProperties(modeltype, codeType);
+            var modeltype = new ScaffoldModel();
+		    modeltype.ProjectDirectory = codeType.ProjectDirectory();
+		    modeltype.ProjectNamespace = codeType.ProjectNamespace();
+			modeltype.Model.Name = codeType.Name;
+            modeltype.Model.Namespace = codeType.Namespace.FullName;
+            modeltype.Model.Bases.AddRange(FindBases(codeType.Bases.Cast<CodeType>()));
+			AddChildProperties(modeltype.Model, codeType);
 			return modeltype;
 		}
 

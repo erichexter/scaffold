@@ -17,5 +17,7 @@ namespace Flywheel.Generator
 	    void CreateDirectory(string directory);
 	    void CopyFilesAndDirectories(string sourceDir, string targetDir);
 	    void Delete(string directory);
+	    string WriteTempFile(string content);
+	    string GetTempFilename();
 	}
 }

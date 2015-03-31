@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using EnvDTE;
 using Flywheel.VSHelpers;
+using Scaffold;
 
 namespace Flywheel.Generator
 {
@@ -9,14 +10,14 @@ namespace Flywheel.Generator
 	{
 		private readonly CodeWindowSelector _codeWindowSelector;
 		private readonly SolutionExplorerSelector _solutionExplorerSelector;
-		private readonly List<string> _templateFilenames = new List<string>();
 		private readonly ITemplateRunner _templateRunner;
 		private readonly IUserInterface _userInterface;
 		private CodeType _model;
-		private ModelType _modelType;
+		private ScaffoldModel _modelType;
 		private TemplateRunResult[] _results;
+	    private ScaffoldSelection _scaffoldSelection;
 
-		public ScaffoldingGenerator(CodeWindowSelector codeWindowSelector, SolutionExplorerSelector solutionExplorerSelector,
+	    public ScaffoldingGenerator(CodeWindowSelector codeWindowSelector, SolutionExplorerSelector solutionExplorerSelector,
 		                            ITemplateRunner templateRunner, IUserInterface userInterface)
 		{
 			_codeWindowSelector = codeWindowSelector;
@@ -34,14 +35,14 @@ namespace Flywheel.Generator
 
 		public IScaffoldingGenerator SelectTemplate()
 		{
-			_templateFilenames.Clear();
-			_templateFilenames.AddRange(_userInterface.DisplayTemplateSelection(_model.ProjectDirectory(), _modelType.Name));
+			
+		    _scaffoldSelection = _userInterface.DisplayTemplateSelection(_model.ProjectDirectory(), _modelType.Model.Name);
 			return this;
 		}
 
 		public IScaffoldingGenerator Generate()
 		{
-			_results = _templateRunner.RunTemplates(_templateFilenames, _modelType, _model);
+			_results = _templateRunner.RunTemplates(_scaffoldSelection, _modelType, _model);
 			return this;
 		}
 		public IScaffoldingGenerator ForModelSelectedInTheSolutionExplorer()

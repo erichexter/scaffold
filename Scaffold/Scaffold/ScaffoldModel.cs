@@ -1,24 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Scaffold
 {
     public class ScaffoldModel
     {
+        public ScaffoldModel()
+        {
+            Model=new ModelType();
+        }
+
         public string ProjectNamespace { get; set; }
         public ModelType Model { get; set; }
+        public string ProjectDirectory { get; set; }
     }
 
     public class ModelType
     {
+        private readonly List<string> _bases = new List<string>();
+        private readonly List<ModelProperty> _methods = new List<ModelProperty>();
         private readonly List<ModelProperty> _properties = new List<ModelProperty>();
         public string Name;
         public string Namespace;
-        private List<ModelProperty> _methods = new List<ModelProperty>();
-        private List<string> _bases = new List<string>();
 
         public List<ModelProperty> Properties
         {
@@ -32,12 +34,10 @@ namespace Scaffold
 
         public List<string> Bases
         {
-            get
-            {
-                return _bases;
-            }
+            get { return _bases; }
         }
     }
+
     public class ModelProperty
     {
         public ModelType ModelType;

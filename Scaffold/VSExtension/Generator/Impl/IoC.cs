@@ -71,7 +71,7 @@ namespace Flywheel.VSHelpers
 
         private ITemplateRunner CreateTemplateRunner()
         {
-            return new TemplateRunner(new FileSystem(), CreateVisualStudioAttacher());
+            return new TemplateRunner(new ProcessRunner(), CreateVisualStudioAttacher(), new FileSystem());
         }
 
         private VisualStudioNewItemAttacher CreateVisualStudioAttacher()
